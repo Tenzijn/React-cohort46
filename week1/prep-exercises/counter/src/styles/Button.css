@@ -1,0 +1,18 @@
+.count-button {
+  border: 1px solid #00b14d;
+  background-color: transparent;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  margin: 14px 2px;
+  cursor: pointer;
+}
+
+.count-button:hover {
+  background-color: #00b14d;
+  color: white;
+}
+
+.count-button {
+  transition: background-color 0.3s, color 0.3s;
+}

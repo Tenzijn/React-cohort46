@@ -1,0 +1,17 @@
+.count {
+  font-weight: bold;
+  margin: 0 0 10px 0;
+}
+
+.count-text {
+  font-size: 4rem;
+  text-shadow: 2px 2px 3px #ffea63;
+  color: #00b14d;
+}
+
+.count-feedback {
+  color: #b9b9b9;
+  border: 1px solid #b9b9b9;
+  padding: 4px 8px;
+  width: 200px;
+}
