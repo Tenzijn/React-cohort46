@@ -1,19 +1,14 @@
 import '../styles/Button.css';
 
 type ButtonProps = {
-  count: number;
-  setCount: (value: number) => void;
+  setCount: () => void;
+  text: string;
 };
 
-export default function Button({ count, setCount }: ButtonProps) {
+export default function Button({ setCount, text }: ButtonProps) {
   return (
-    <button
-      className='count-button'
-      onClick={() => {
-        setCount(count + 1);
-      }}
-    >
-      Add 1
+    <button className='count-button' onClick={setCount}>
+      {text}
     </button>
   );
 }
