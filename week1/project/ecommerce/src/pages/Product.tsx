@@ -17,7 +17,12 @@ export default function Product() {
         showAll='all'
         currentCategory={category}
       />
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={5} mt={5} mb={5}>
+      <SimpleGrid
+        columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
+        spacing={5}
+        mt={5}
+        mb={5}
+      >
         {products
           .filter(
             (product) => category === 'all' || category === product.category
