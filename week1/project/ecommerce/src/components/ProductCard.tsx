@@ -4,7 +4,6 @@ import {
   CardBody,
   CardFooter,
   Image,
-  VStack,
   Heading,
   Text,
   Divider,
