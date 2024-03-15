@@ -1,9 +1,7 @@
-import { PinInput, PinInputField, HStack } from '@chakra-ui/react';
-
 function App() {
   return (
     <>
-      <h1>Hello world</h1>
+      <h1>I am main Home page</h1>
     </>
   );
 }
