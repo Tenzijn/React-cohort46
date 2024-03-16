@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import allCategories from '../fake-data/all-categories';
 import { Button } from '@chakra-ui/react';
 
@@ -8,18 +9,19 @@ type ProductCategoriesProps = {
 };
 
 export default function ProductCategories(props: ProductCategoriesProps) {
-  const toggleActive = (element: string, id: string) => {
-    const e = document.querySelectorAll(
-      `.${element}`
-    ) as NodeListOf<HTMLElement>;
-    e.forEach((el) => {
-      if (el.id === id) {
-        el.style.backgroundColor = 'rgb(193 193 193)';
-      } else {
-        el.style.backgroundColor = '#edf2f7';
-      }
-    });
-  };
+  const activeCategory = useRef<HTMLButtonElement>();
+  const previousActiveCategory = useRef<HTMLButtonElement>();
+
+  useEffect(() => {
+    activeCategory.current?.style.setProperty(
+      'background-color',
+      'rgb(193 193 193)'
+    );
+    previousActiveCategory.current?.style.setProperty(
+      'background-color',
+      '#edf2f7'
+    );
+  }, [props.currentCategory]);
 
   return (
     <>
@@ -31,10 +33,9 @@ export default function ProductCategories(props: ProductCategoriesProps) {
               ? 'rgb(193 193 193)'
               : '#edf2f7',
         }}
-        onClick={(e) => {
-          const target = e.target as HTMLButtonElement;
+        onClick={() => {
+          previousActiveCategory.current = activeCategory.current;
           props.setCategory(props.showAll);
-          toggleActive('category-button', target.id);
         }}
         mr={3}
       >
@@ -46,10 +47,12 @@ export default function ProductCategories(props: ProductCategoriesProps) {
           id={`category_${index}`}
           className='category-button'
           key={index}
-          onClick={(e) => {
-            const target = e.target as HTMLButtonElement;
+          onClick={() => {
+            previousActiveCategory.current = activeCategory.current;
             props.setCategory(category.split(': ')[1]);
-            toggleActive('category-button', target.id);
+            activeCategory.current = document.querySelector(
+              `#category_${index}`
+            ) as HTMLButtonElement;
           }}
           my={3}
           mr={3}
