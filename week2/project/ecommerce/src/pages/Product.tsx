@@ -2,7 +2,7 @@ import { useState } from 'react';
 import products from '../fake-data/all-products.js';
 import ProductCard from '../components/ProductCard.js';
 import { SimpleGrid, Box, Heading } from '@chakra-ui/react';
-import ProductCategories from '../components/ProductCategories';
+import ProductCategories from '../components/ProductCategories.js';
 
 export default function Product() {
   const [category, setCategory] = useState('all');
