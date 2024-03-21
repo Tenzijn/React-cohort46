@@ -8,7 +8,11 @@ type ProductCategoriesProps = {
   showAll: string;
 };
 
-export default function ProductCategories(props: ProductCategoriesProps) {
+export default function ProductCategories({
+  currentCategory,
+  setCategory,
+  showAll,
+}: ProductCategoriesProps) {
   const activeCategory = useRef<HTMLButtonElement>();
   const previousActiveCategory = useRef<HTMLButtonElement>();
 
@@ -21,7 +25,7 @@ export default function ProductCategories(props: ProductCategoriesProps) {
       'background-color',
       '#edf2f7'
     );
-  }, [props.currentCategory]);
+  }, [currentCategory]);
 
   return (
     <>
@@ -29,13 +33,11 @@ export default function ProductCategories(props: ProductCategoriesProps) {
         className='category-button'
         style={{
           backgroundColor:
-            props.currentCategory === props.showAll
-              ? 'rgb(193 193 193)'
-              : '#edf2f7',
+            currentCategory === showAll ? 'rgb(193 193 193)' : '#edf2f7',
         }}
         onClick={() => {
           previousActiveCategory.current = activeCategory.current;
-          props.setCategory(props.showAll);
+          setCategory(showAll);
         }}
         mr={3}
       >
@@ -49,7 +51,7 @@ export default function ProductCategories(props: ProductCategoriesProps) {
           key={index}
           onClick={() => {
             previousActiveCategory.current = activeCategory.current;
-            props.setCategory(category.split(': ')[1]);
+            setCategory(category.split(': ')[1]);
             activeCategory.current = document.querySelector(
               `#category_${index}`
             ) as HTMLButtonElement;

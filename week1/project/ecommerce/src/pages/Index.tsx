@@ -1,5 +1,6 @@
 import { ChakraProvider, Container } from '@chakra-ui/react';
 import Product from './Product';
+
 function App() {
   return (
     <ChakraProvider>
