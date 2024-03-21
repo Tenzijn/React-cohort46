@@ -21,7 +21,6 @@ export default function PersonController() {
     getPerson();
   }, []);
 
-  console.log(person);
   if (!person) return <p>Loading...</p>;
   return (
     <Person
