@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Person from './Person';
+import Loading from './Loading';
 
 type PersonDetails = {
   name: {
@@ -13,16 +14,17 @@ export default function PersonController() {
   const [person, setPerson] = useState<PersonDetails | null>(null);
 
   useEffect(() => {
-    const getPerson = async () => {
+    (async function getPerson() {
       await fetch('https://randomuser.me/api/')
         .then((response) => response.json())
         .then((data) => setPerson(data.results[0]));
-    };
-    getPerson();
+    })();
+    console.log('person:', person);
   }, []);
 
-  if (!person) return <p>Loading...</p>;
-  return (
+  return !person ? (
+    <Loading />
+  ) : (
     <Person
       first_name={person.name.first}
       last_name={person.name.last}
