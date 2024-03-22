@@ -19,8 +19,8 @@ export default function PersonController() {
         .then((response) => response.json())
         .then((data) => setPerson(data.results[0]));
     })();
-    console.log('person:', person);
   }, []);
+  console.log('person:', person);
 
   return !person ? (
     <Loading />
