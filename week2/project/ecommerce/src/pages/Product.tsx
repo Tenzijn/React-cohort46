@@ -1,11 +1,70 @@
-import { useState } from 'react';
-import products from '../fake-data/all-products.js';
+import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard.js';
 import { SimpleGrid, Box, Heading } from '@chakra-ui/react';
-import ProductCategories from '../components/ProductCategories.js';
+import ProductCategories from '../components/ProductCategories';
+import PageNotFound from './PageNotFound.js';
+
+type Products = {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+};
 
 export default function Product() {
-  const [category, setCategory] = useState('all');
+  const showAll: string = 'all';
+  const [category, setCategory] = useState(showAll);
+  const [products, setProducts] = useState([] as Products[]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      await fetch('https://fakestoreapi.com/products')
+        .then((response) => response.json())
+        .then((data) => {
+          setProducts(data);
+          setIsLoading(false);
+        })
+        .catch(() => {
+          setError(true);
+        });
+    })();
+  }, []);
+
+  if (error) {
+    return <PageNotFound />;
+  }
+
+  const filteredProducts =
+    category === showAll
+      ? products
+      : products.filter((product) => {
+          return product.category === category;
+        });
+
+  const productCards = filteredProducts.map((product) => (
+    <ProductCard
+      key={product.id}
+      title={product.title}
+      price={product.price}
+      description={product.description}
+      category={product.category}
+      image={product.image}
+      rating={product.rating}
+      id={product.id}
+    />
+  ));
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Box>
@@ -13,7 +72,7 @@ export default function Product() {
         Products
       </Heading>
       <ProductCategories
-        setCategory={(category) => setCategory(category)}
+        setCategory={setCategory}
         showAll='all'
         currentCategory={category}
       />
@@ -23,21 +82,7 @@ export default function Product() {
         mt={5}
         mb={5}
       >
-        {products
-          .filter(
-            (product) => category === 'all' || category === product.category
-          )
-          .map((product) => (
-            <ProductCard
-              key={product.id}
-              title={product.title}
-              price={product.price}
-              description={product.description}
-              category={product.category}
-              image={product.image}
-              rating={product.rating}
-            />
-          ))}
+        {productCards}
       </SimpleGrid>
     </Box>
   );

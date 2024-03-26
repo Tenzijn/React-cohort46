@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 
 type ProductCardProps = {
+  id: number;
   key: number;
   title: string;
   price: number;
@@ -28,7 +29,12 @@ type ProductCardProps = {
 
 export default function ProductCard(props: ProductCardProps) {
   return (
-    <Card maxW='md'>
+    <Card
+      maxW='md'
+      onClick={() => {
+        window.location.href = `/product/${props.id}`;
+      }}
+    >
       <CardHeader>
         <Image
           boxSize='300px'
