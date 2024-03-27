@@ -1,4 +1,16 @@
-.body {
+.product-body {
   display: flex;
   align-items: center;
+  margin: 0px 40px;
+  max-width: 1000px;
+}
+
+.product-desc {
+  font-size: large;
+}
+
+.product-image img {
+  width: 300px;
+  height: 300px;
+  margin-right: 40px;
 }

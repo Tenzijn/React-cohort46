@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@chakra-ui/react';
-import '../styles/ProductCategories.css';
+import '../styles/productCategories.css';
 import PageNotFound from '../pages/PageNotFound';
 
 type ProductCategoriesProps = {

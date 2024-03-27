@@ -43,11 +43,11 @@ export default function Detail() {
       <div>
         <h1>{product.title}</h1>
       </div>
-      <div className='body'>
-        <div>
+      <div className='product-body'>
+        <div className='product-desc'>
           <p>{product.description}</p>
         </div>
-        <div>
+        <div className='product-image'>
           <img src={product.image} alt={product.description} />
         </div>
       </div>
