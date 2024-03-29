@@ -4,6 +4,8 @@ import { SimpleGrid, Box, Heading } from '@chakra-ui/react';
 import ProductCategories from '../components/ProductCategories';
 import PageNotFound from './PageNotFound.js';
 
+import { Link } from 'react-router-dom';
+
 type Products = {
   id: number;
   title: string;
@@ -50,16 +52,18 @@ export default function Product() {
         });
 
   const productCards = filteredProducts.map((product) => (
-    <ProductCard
-      key={product.id}
-      title={product.title}
-      price={product.price}
-      description={product.description}
-      category={product.category}
-      image={product.image}
-      rating={product.rating}
-      id={product.id}
-    />
+    <Link to={`/product/${product.id}`} key={product.id}>
+      <ProductCard
+        key={product.id}
+        title={product.title}
+        price={product.price}
+        description={product.description}
+        category={product.category}
+        image={product.image}
+        rating={product.rating}
+        id={product.id}
+      />
+    </Link>
   ));
 
   if (isLoading) {

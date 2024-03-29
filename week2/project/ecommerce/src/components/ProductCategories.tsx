@@ -18,16 +18,13 @@ export default function ProductCategories({
   const [activeBtn, setActiveBtn] = useState<HTMLElement>();
 
   useEffect(() => {
-    setActiveBtn(document.querySelector('#category_all') as HTMLElement);
-  }, []);
-
-  useEffect(() => {
     (async () => {
       await fetch('https://fakestoreapi.com/products/categories')
         .then((response) => response.json())
         .then((data) => {
           setCategories(data);
           setIsLoading(false);
+          setActiveBtn(document.querySelector('#category_all') as HTMLElement);
         })
         .catch(() => {
           setError(true);

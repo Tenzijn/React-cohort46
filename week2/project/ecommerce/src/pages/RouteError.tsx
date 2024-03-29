@@ -5,7 +5,6 @@ type Error = {
 };
 function RouteError() {
   const error = useRouteError() as Error;
-  console.log(error);
   return (
     <div id='error-page'>
       <h1>Oops!</h1>

@@ -19,6 +19,7 @@ type Product = {
 export default function Detail() {
   const [product, setProduct] = useState({} as Product);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -27,15 +28,21 @@ export default function Detail() {
         .then((response) => response.json())
         .then((data) => {
           setProduct(data);
+          setIsLoading(false);
         })
         .catch(() => {
           setError(true);
+          setIsLoading(false);
         });
     })();
   }, [id]);
 
   if (error) {
     return <PageNotFound />;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (

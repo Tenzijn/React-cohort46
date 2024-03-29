@@ -29,12 +29,7 @@ type ProductCardProps = {
 
 export default function ProductCard(props: ProductCardProps) {
   return (
-    <Card
-      maxW='md'
-      onClick={() => {
-        window.location.href = `/product/${props.id}`;
-      }}
-    >
+    <Card maxW='md'>
       <CardHeader>
         <Image
           boxSize='300px'
