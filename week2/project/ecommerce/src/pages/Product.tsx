@@ -71,11 +71,7 @@ export default function Product() {
       <Heading size='lg' mb={5}>
         Products
       </Heading>
-      <ProductCategories
-        setCategory={setCategory}
-        showAll='all'
-        currentCategory={category}
-      />
+      <ProductCategories setCategory={setCategory} showAll={showAll} />
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
         spacing={5}

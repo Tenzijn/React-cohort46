@@ -4,12 +4,14 @@ import '../styles/productCategories.css';
 import PageNotFound from '../pages/PageNotFound';
 
 type ProductCategoriesProps = {
-  currentCategory: string;
   setCategory: (category: string) => void;
   showAll: string;
 };
 
-export default function ProductCategories(props: ProductCategoriesProps) {
+export default function ProductCategories({
+  setCategory,
+  showAll,
+}: ProductCategoriesProps) {
   const [categories, setCategories] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -52,7 +54,7 @@ export default function ProductCategories(props: ProductCategoriesProps) {
         }
         onClick={(e) => {
           const target = e.target as HTMLButtonElement;
-          props.setCategory(props.showAll);
+          setCategory(showAll);
           setActiveBtn(target);
         }}
         mr={3}
@@ -71,7 +73,7 @@ export default function ProductCategories(props: ProductCategoriesProps) {
           }
           onClick={(e) => {
             const target = e.target as HTMLButtonElement;
-            props.setCategory(category);
+            setCategory(category);
             setActiveBtn(target);
           }}
           my={3}
