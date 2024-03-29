@@ -13,6 +13,11 @@ export default function ProductCategories(props: ProductCategoriesProps) {
   const [categories, setCategories] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [activeBtn, setActiveBtn] = useState<HTMLElement>();
+
+  useEffect(() => {
+    setActiveBtn(document.querySelector('#category_all') as HTMLElement);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -32,19 +37,6 @@ export default function ProductCategories(props: ProductCategoriesProps) {
     return <PageNotFound />;
   }
 
-  const toggleActive = (element: string, id: string) => {
-    const e = document.querySelectorAll(
-      `.${element}`
-    ) as NodeListOf<HTMLElement>;
-    e.forEach((el) => {
-      if (el.id === id) {
-        el.classList.add('active-btn');
-      } else {
-        el.classList.remove('active-btn');
-      }
-    });
-  };
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -52,11 +44,16 @@ export default function ProductCategories(props: ProductCategoriesProps) {
   return (
     <>
       <Button
-        className='category-button active-btn'
+        id='category_all'
+        variant={
+          activeBtn === document.querySelector('#category_all')
+            ? 'category-active-btn'
+            : ''
+        }
         onClick={(e) => {
           const target = e.target as HTMLButtonElement;
           props.setCategory(props.showAll);
-          toggleActive('category-button', target.id);
+          setActiveBtn(target);
         }}
         mr={3}
       >
@@ -66,12 +63,16 @@ export default function ProductCategories(props: ProductCategoriesProps) {
       {categories.map((category, index) => (
         <Button
           id={`category_${index}`}
-          className='category-button'
           key={index}
+          variant={
+            activeBtn === document.querySelector(`#category_${index}`)
+              ? 'category-active-btn'
+              : ''
+          }
           onClick={(e) => {
             const target = e.target as HTMLButtonElement;
             props.setCategory(category);
-            toggleActive('category-button', target.id);
+            setActiveBtn(target);
           }}
           my={3}
           mr={3}
