@@ -1,0 +1,33 @@
+.navbar {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.navbar-list {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar-item {
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: #495057;
+}
+
+.navbar-link:hover {
+  color: #212529;
+}
+
+.active {
+  font-weight: bold;
+  color: #212529;
+}

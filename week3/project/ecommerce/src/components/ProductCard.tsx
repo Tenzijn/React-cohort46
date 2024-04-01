@@ -50,7 +50,6 @@ export default function ProductCard(props: ProductCardProps) {
           top='10px'
           onClick={(e) => {
             e.preventDefault();
-            console.log('Favourite icon clicked');
             if (favorites.includes(props.id)) {
               action(favorites.filter((item) => item !== props.id));
             } else {

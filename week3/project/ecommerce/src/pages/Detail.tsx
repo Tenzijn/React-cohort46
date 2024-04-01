@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import PageNotFound from './PageNotFound';
 import { FavoritesContext } from '../context/context';
+import Navbar from '../components/Navbar';
 import '../styles/detail.css';
 
 type Product = {
@@ -49,6 +50,7 @@ export default function Detail() {
 
   return (
     <>
+      <Navbar />
       <div>
         <h1 className='product-title'>{product.title}</h1>
       </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ChakraProvider, Container } from '@chakra-ui/react';
 import { theme } from './styles/theme';
 import Product from './pages/Product';
+import Favorites from './pages/Favorites';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Detail from './pages/Detail';
 
@@ -20,6 +21,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Product />} />
               <Route path='/product/:id' element={<Detail />} />
+              <Route path='/favorites' element={<Favorites />} />
             </Routes>
           </BrowserRouter>
         </FavoritesContext.Provider>

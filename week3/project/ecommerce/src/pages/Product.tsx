@@ -3,7 +3,7 @@ import ProductCard from '../components/ProductCard.js';
 import { SimpleGrid, Box, Heading } from '@chakra-ui/react';
 import ProductCategories from '../components/ProductCategories.js';
 import PageNotFound from './PageNotFound.js';
-
+import Navbar from '../components/Navbar.js';
 import { Link } from 'react-router-dom';
 
 type Products = {
@@ -75,6 +75,7 @@ export default function Product() {
       <Heading size='lg' mb={5}>
         Products
       </Heading>
+      <Navbar />
       <ProductCategories setCategory={setCategory} showAll={showAll} />
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
