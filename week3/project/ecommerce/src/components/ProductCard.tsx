@@ -13,6 +13,10 @@ import {
   Box,
 } from '@chakra-ui/react';
 
+import { useContext } from 'react';
+
+import { FavoritesContext } from '../context/context';
+
 type ProductCardProps = {
   id: number;
   key: number;
@@ -28,11 +32,16 @@ type ProductCardProps = {
 };
 
 export default function ProductCard(props: ProductCardProps) {
+  const { favorites, action } = useContext(FavoritesContext);
   return (
     <Card maxW='md'>
       <CardHeader>
         <Image
-          src='./heart-regular.svg'
+          src={
+            favorites.includes(props.id)
+              ? '/heart-solid.svg'
+              : '/heart-regular.svg'
+          }
           alt='heart icon'
           w='20px'
           h='20px'
@@ -42,6 +51,11 @@ export default function ProductCard(props: ProductCardProps) {
           onClick={(e) => {
             e.preventDefault();
             console.log('Favourite icon clicked');
+            if (favorites.includes(props.id)) {
+              action(favorites.filter((item) => item !== props.id));
+            } else {
+              action([...favorites, props.id]);
+            }
           }}
         />
         <Image

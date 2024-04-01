@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import PageNotFound from './PageNotFound';
+import { FavoritesContext } from '../context/context';
 import '../styles/detail.css';
 
 type Product = {
@@ -21,6 +22,7 @@ export default function Detail() {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams<{ id: string }>();
+  const { favorites, action } = useContext(FavoritesContext);
 
   useEffect(() => {
     (async () => {
@@ -56,12 +58,21 @@ export default function Detail() {
         </div>
         <div className='product-icon'>
           <img
-            src='../heart-regular.svg'
+            src={
+              favorites.includes(product.id)
+                ? '../heart-solid.svg'
+                : '../heart-regular.svg'
+            }
             alt='Favourite'
             className='icon'
             onClick={(e) => {
               e.preventDefault();
               console.log('Favourite icon clicked');
+              if (favorites.includes(product.id)) {
+                action(favorites.filter((item) => item !== product.id));
+              } else {
+                action([...favorites, product.id]);
+              }
             }}
           />
         </div>
