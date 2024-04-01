@@ -21,6 +21,7 @@ type Product = {
 
 export default function Favorites() {
   const [favoritesProducts, setFavoritesProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { favorites } = useContext(FavoritesContext);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function Favorites() {
         })
       );
       setFavoritesProducts(products);
+      setIsLoading(false);
     })();
   }, [favorites]);
 
@@ -51,6 +53,10 @@ export default function Favorites() {
       />
     </Link>
   ));
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (favorites.length === 0) {
     return (
