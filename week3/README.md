@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/72f3be59-d5d9-49e0-aeb5-159a08ae68d9/deploy-status)](https://app.netlify.com/sites/week3assignmenttenzin/deploys)
+
 # Reading Material React Week 3
 
 ## Agenda
