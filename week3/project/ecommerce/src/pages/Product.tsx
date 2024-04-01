@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard.js';
 import { SimpleGrid, Box, Heading } from '@chakra-ui/react';
-import ProductCategories from '../components/ProductCategories';
+import ProductCategories from '../components/ProductCategories.js';
 import PageNotFound from './PageNotFound.js';
 
 import { Link } from 'react-router-dom';
