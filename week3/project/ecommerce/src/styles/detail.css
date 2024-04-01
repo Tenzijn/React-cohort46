@@ -1,3 +1,9 @@
+.product-title {
+  font-size: xx-large;
+  margin: 20px 40px;
+  font-weight: 800;
+}
+
 .product-body {
   display: flex;
   align-items: center;
@@ -9,8 +15,13 @@
   font-size: large;
 }
 
+.product-image {
+  margin: 20px 40px;
+  width: 500px;
+}
+
 .product-image img {
-  width: 300px;
   height: 300px;
+  width: auto;
   margin-right: 40px;
 }

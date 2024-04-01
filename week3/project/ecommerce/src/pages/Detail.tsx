@@ -48,7 +48,7 @@ export default function Detail() {
   return (
     <>
       <div>
-        <h1>{product.title}</h1>
+        <h1 className='product-title'>{product.title}</h1>
       </div>
       <div className='product-body'>
         <div className='product-desc'>
