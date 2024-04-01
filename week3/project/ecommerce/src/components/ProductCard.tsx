@@ -32,6 +32,19 @@ export default function ProductCard(props: ProductCardProps) {
     <Card maxW='md'>
       <CardHeader>
         <Image
+          src='./heart-regular.svg'
+          alt='heart icon'
+          w='20px'
+          h='20px'
+          position='absolute'
+          right='10px'
+          top='10px'
+          onClick={(e) => {
+            e.preventDefault();
+            console.log('Favourite icon clicked');
+          }}
+        />
+        <Image
           boxSize='300px'
           src={props.image}
           alt={props.description}

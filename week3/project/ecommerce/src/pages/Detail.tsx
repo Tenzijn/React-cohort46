@@ -54,6 +54,17 @@ export default function Detail() {
         <div className='product-desc'>
           <p>{product.description}</p>
         </div>
+        <div className='product-icon'>
+          <img
+            src='../heart-regular.svg'
+            alt='Favourite'
+            className='icon'
+            onClick={(e) => {
+              e.preventDefault();
+              console.log('Favourite icon clicked');
+            }}
+          />
+        </div>
         <div className='product-image'>
           <img src={product.image} alt={product.description} />
         </div>
