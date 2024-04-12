@@ -6,16 +6,17 @@ import PageNotFound from '../pages/PageNotFound';
 type ProductCategoriesProps = {
   setCategory: (category: string) => void;
   showAll: string;
+  selectedCategory: string;
 };
 
 export default function ProductCategories({
   setCategory,
   showAll,
+  selectedCategory,
 }: ProductCategoriesProps) {
   const [categories, setCategories] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [activeBtn, setActiveBtn] = useState<HTMLElement>();
 
   useEffect(() => {
     (async () => {
@@ -24,10 +25,10 @@ export default function ProductCategories({
         .then((data) => {
           setCategories(data);
           setIsLoading(false);
-          setActiveBtn(document.querySelector('#category_all') as HTMLElement);
         })
         .catch(() => {
           setError(true);
+          setIsLoading(false);
         });
     })();
   }, []);
@@ -44,15 +45,9 @@ export default function ProductCategories({
     <>
       <Button
         id='category_all'
-        variant={
-          activeBtn === document.querySelector('#category_all')
-            ? 'category-active-btn'
-            : ''
-        }
+        variant={selectedCategory === showAll ? 'category-active-btn' : ''}
         onClick={(e) => {
-          const target = e.target as HTMLButtonElement;
           setCategory(showAll);
-          setActiveBtn(target);
         }}
         mr={3}
       >
@@ -63,15 +58,9 @@ export default function ProductCategories({
         <Button
           id={`category_${index}`}
           key={index}
-          variant={
-            activeBtn === document.querySelector(`#category_${index}`)
-              ? 'category-active-btn'
-              : ''
-          }
+          variant={selectedCategory === category ? 'category-active-btn' : ''}
           onClick={(e) => {
-            const target = e.target as HTMLButtonElement;
             setCategory(category);
-            setActiveBtn(target);
           }}
           my={3}
           mr={3}
