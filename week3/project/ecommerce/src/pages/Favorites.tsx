@@ -64,7 +64,7 @@ export default function Favorites() {
         <Heading size='lg' mb={5}>
           Favorites
         </Heading>
-        <Navbar />
+        <Navbar pageName='favorites' />
         <Box>No favorites yet</Box>
       </Box>
     );
@@ -75,7 +75,7 @@ export default function Favorites() {
       <Heading size='lg' mb={5}>
         Favorites
       </Heading>
-      <Navbar />
+      <Navbar pageName='favorites' />
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
         spacing={5}

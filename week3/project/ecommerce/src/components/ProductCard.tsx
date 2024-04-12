@@ -32,7 +32,7 @@ type ProductCardProps = {
 };
 
 export default function ProductCard(props: ProductCardProps) {
-  const { favorites, action } = useContext(FavoritesContext);
+  const { favorites, setFavorites } = useContext(FavoritesContext);
   return (
     <Card maxW='md'>
       <CardHeader>
@@ -51,9 +51,9 @@ export default function ProductCard(props: ProductCardProps) {
           onClick={(e) => {
             e.preventDefault();
             if (favorites.includes(props.id)) {
-              action(favorites.filter((item) => item !== props.id));
+              setFavorites(favorites.filter((item) => item !== props.id));
             } else {
-              action([...favorites, props.id]);
+              setFavorites([...favorites, props.id]);
             }
           }}
         />

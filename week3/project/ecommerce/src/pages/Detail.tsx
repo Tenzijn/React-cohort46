@@ -69,7 +69,6 @@ export default function Detail() {
             className='icon'
             onClick={(e) => {
               e.preventDefault();
-              console.log('Favourite icon clicked');
               if (favorites.includes(product.id)) {
                 action(favorites.filter((item) => item !== product.id));
               } else {

@@ -27,31 +27,38 @@ export default function Product() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      await fetch('https://fakestoreapi.com/products')
-        .then((response) => response.json())
-        .then((data) => {
-          setProducts(data);
-          setIsLoading(false);
-        })
-        .catch(() => {
-          setError(true);
-        });
-    })();
-  }, []);
+    if (category === showAll) {
+      (async () => {
+        await fetch('https://fakestoreapi.com/products')
+          .then((response) => response.json())
+          .then((data) => {
+            setProducts(data);
+            setIsLoading(false);
+          })
+          .catch(() => {
+            setError(true);
+          });
+      })();
+    } else {
+      (async () => {
+        await fetch(`https://fakestoreapi.com/products/category/${category}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setProducts(data);
+            setIsLoading(false);
+          })
+          .catch(() => {
+            setError(true);
+          });
+      })();
+    }
+  }, [category]);
 
   if (error) {
     return <PageNotFound />;
   }
 
-  const filteredProducts =
-    category === showAll
-      ? products
-      : products.filter((product) => {
-          return product.category === category;
-        });
-
-  const productCards = filteredProducts.map((product) => (
+  const productCards = products.map((product) => (
     <Link to={`/product/${product.id}`} key={product.id}>
       <ProductCard
         key={product.id}
@@ -75,8 +82,12 @@ export default function Product() {
       <Heading size='lg' mb={5}>
         Products
       </Heading>
-      <Navbar />
-      <ProductCategories setCategory={setCategory} showAll={showAll} />
+      <Navbar pageName={'products'} />
+      <ProductCategories
+        setCategory={setCategory}
+        showAll={showAll}
+        selectedCategory={category}
+      />
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
         spacing={5}

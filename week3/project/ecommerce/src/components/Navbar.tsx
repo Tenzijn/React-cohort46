@@ -1,30 +1,28 @@
-import { useEffect } from 'react';
 import '../styles/navbar.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export default function Navbar() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    const links = document.querySelectorAll('.navbar-link');
-    links.forEach((link) => {
-      if (link.getAttribute('href') === pathname) {
-        link.classList.add('active');
-      }
-    });
-  }, [pathname]);
-
+export default function Navbar({ pageName }: string) {
   return (
     <>
       <div className='navbar'>
         <ul className='navbar-list'>
           <li className='navbar-item'>
-            <Link to='/' className='navbar-link'>
+            <Link
+              to='/'
+              className={`navbar-link ${
+                pageName === 'products' ? 'active' : ''
+              }`}
+            >
               Products
             </Link>
           </li>
           <li className='navbar-item'>
-            <Link to='/favorites' className='navbar-link'>
+            <Link
+              to='/favorites'
+              className={`navbar-link ${
+                pageName === 'favorites' ? 'active' : ''
+              }`}
+            >
               Favorites
             </Link>
           </li>
